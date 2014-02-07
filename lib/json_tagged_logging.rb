@@ -2,6 +2,7 @@ require 'active_support/core_ext/object/blank'
 require 'logger'
 require 'json'
 require 'active_support/logger'
+require 'active_support/core_ext/module/delegation'
 
 
 module JSONTaggedLogging
@@ -55,7 +56,7 @@ module JSONTaggedLogging
     logger.extend(self)
   end
 
-  # delegate :push_tags, :pop_tags, :clear_tags!, to: :formatter
+  delegate :push_tags, :pop_tags, :clear_tags!, to: :formatter
 
   def tagged(*tags)
     formatter.tagged(*tags) { yield self }
