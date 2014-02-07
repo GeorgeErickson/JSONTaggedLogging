@@ -44,13 +44,13 @@ describe 'JSONTaggedLogging' do
   it "Tags correctly" do
     expect(logger).to be_untagged
 
-    logger.tagged({a: 'A'}) do
+    logger.tagged(a: 'A') do
       expect(logger).to be_tagged_with({a: 'A'})
 
       logger.tagged({b: 'B'}) do
         expect(logger).to be_tagged_with({a: 'A', b: 'B'})
 
-        logger.tagged({a: '2', c: 'C'}) do
+        logger.tagged(a: '2', c: 'C') do
           expect(logger).to be_tagged_with({a: '2', b: 'B', c: 'C'})
         end
         expect(logger).to be_tagged_with({a: 'A', b: 'B'})
